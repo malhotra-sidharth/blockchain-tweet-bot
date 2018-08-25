@@ -1,3 +1,7 @@
+retweet_blockchain:
+    resource: "@RetweetBlockchainBundle/Resources/config/routing.yml"
+    prefix:   rt-blockchain/
+
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
