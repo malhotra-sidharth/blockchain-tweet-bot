@@ -33,3 +33,10 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+
+    # APPLICATION LEVEL SERVICES
+    #
+    #Twitter OAuth
+    abraham.twitteroauth:
+      class: Abraham\TwitterOAuth\TwitterOAuth
+      arguments: ['%consumer_key%', '%consumer_secret%', '%access_token%', '%access_secret%']

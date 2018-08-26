@@ -2,3 +2,7 @@ services:
 #    retweet_blockchain.example:
 #        class: RetweetBot\RetweetBlockchainBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
+
+  fetch.tweets.abraham.twitteroauth:
+    class: RetweetBot\RetweetBlockchainBundle\Services\AbrahamTwitterOAuthWrapper
+    arguments: ['@abraham.twitteroauth']
