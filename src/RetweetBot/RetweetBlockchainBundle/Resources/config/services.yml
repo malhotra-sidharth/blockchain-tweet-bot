@@ -6,3 +6,7 @@ services:
   fetch.tweets.abraham.twitteroauth:
     class: RetweetBot\RetweetBlockchainBundle\Services\AbrahamTwitterOAuthWrapper
     arguments: ['@abraham.twitteroauth']
+
+  retweetbot.redis:
+    class: RetweetBot\RetweetBlockchainBundle\Services\RedisWrapper
+    arguments: ['%redis_addr%']

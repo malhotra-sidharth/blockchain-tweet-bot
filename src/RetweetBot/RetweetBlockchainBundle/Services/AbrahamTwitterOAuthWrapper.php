@@ -12,7 +12,7 @@ class AbrahamTwitterOAuthWrapper {
    * @var TwitterOAuth
    * Abraham TwitterOAuth Service holder variable
    */
-  public $twitterOAuth;
+  private $twitterOAuth;
 
   /**
    * AbrahamTwitterOAuthWrapper constructor.
@@ -53,7 +53,7 @@ class AbrahamTwitterOAuthWrapper {
             "count" => 50
         ]);
 
-    return $tweets['statuses'];
+    return $tweets->statuses;
   }
 
   /**
