@@ -57,7 +57,7 @@ class RedisWrapper {
    * TRUE if the given key is in cache else false
    */
   public function hasItem(int $key): bool {
-    return $this->redisCache->hasItem("blockchain" . $key);
+    return $this->redisCache->hasItem((string)$key);
   }
 
   /**
