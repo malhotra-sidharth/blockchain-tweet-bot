@@ -22,6 +22,15 @@ class BlockchainController extends Controller {
     /** @var RedisWrapper $cache */
     $cache = $this->container->get('retweetbot.redis');
 
+    // Check if it has run in last 18 mins or not
+    if (false === $cache->checkIfReady()) {
+      return new JsonResponse(
+          ["Hey!! You are doing it too fast!! Let's slow down a bit. I don't wanna spam."]);
+    }
+
+    // update the last run time
+    $cache->updateTime();
+
     $tweets = $twitterOAuth->getTweetsForBlockchainTag();
 
     $retweets = [];

@@ -80,4 +80,40 @@ class RedisWrapper {
 
     return false;
   }
+
+  /**
+   * Checks if the bot is ready to retweet again to avoid spam
+   *
+   * @return bool
+   * Return True if The interval of 18 mins has passed else False
+   */
+  public function checkIfReady(): bool {
+    $time = $this->redisCache->getItem("last-run");
+
+    if (true === $time->isHit()) {
+      $time = $time->get();
+      $currentTime = time();
+      $interval = 18 * 60;
+      if ($currentTime - $time > $interval) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  /**
+   * Updates after every retweet cycle
+   *
+   * @return bool
+   * Returns true if updated successfully else false
+   */
+  public function updateTime() {
+    $time = $this->redisCache->getItem("last-run");
+    $time->set(time());
+    return $this->redisCache->save($time);
+  }
 }
