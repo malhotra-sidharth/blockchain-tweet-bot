@@ -26,6 +26,7 @@ class BlockchainController extends Controller {
 
     $retweets = [];
 
+    // iterate through the tweets
     foreach ($tweets as $tweet) {
       // create tweet object
       $tweetObj = new Tweet($tweet);
@@ -34,6 +35,11 @@ class BlockchainController extends Controller {
       if (!$cache->hasItem($tweetObj->getUser()->getId())) {
         $retweets[] = $tweetObj->getId();
         $cache->putItem($tweetObj->getUser()->getId());
+      }
+
+      // don't exceed more the count of 10 retweets every interval
+      if (count($retweets) == 10) {
+        break;
       }
     }
 
