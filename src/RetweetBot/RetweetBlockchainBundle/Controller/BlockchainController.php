@@ -38,7 +38,7 @@ class BlockchainController extends Controller {
       }
 
       // don't exceed more the count of 10 retweets every interval
-      if (count($retweets) == 10) {
+      if (10 == count($retweets)) {
         break;
       }
     }
