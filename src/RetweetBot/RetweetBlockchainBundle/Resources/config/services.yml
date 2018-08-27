@@ -1,3 +1,11 @@
+parameters:
+  # Env. Variables
+  consumer_key: '%env(CONSUMER_KEY)%'
+  consumer_secret: '%env(CONSUMER_SECRET)%'
+  access_token: '%env(ACCESS_TOKEN)%'
+  access_secret: '%env(ACCESS_SECRET)%'
+  redis_addr: '%env(REDIS_ADDR)%'
+
 services:
 #    retweet_blockchain.example:
 #        class: RetweetBot\RetweetBlockchainBundle\Example
