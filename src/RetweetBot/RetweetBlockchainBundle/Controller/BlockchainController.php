@@ -22,27 +22,26 @@ class BlockchainController extends Controller {
     /** @var RedisWrapper $cache */
     $cache = $this->container->get('retweetbot.redis');
 
-//    $tweets = $twitterOAuth->getTweetsForBlockchainTag();
+    $tweets = $twitterOAuth->getTweetsForBlockchainTag();
 
     $retweets = [];
 
-//    foreach ($tweets as $tweet) {
-//      // create tweet object
-//      $tweetObj = new Tweet($tweet);
-//
-//      // check if the user's limit for today has been reached or not
-//      if (!$cache->hasItem($tweetObj->getUser()->getId())) {
-//        $retweets[] = $tweetObj->getId();
-//        $cache->putItem($tweetObj->getUser()->getId());
-//      }
-//    }
-//
-//    // if not then retweet else do nothing
-//    foreach ($retweets as $retweet) {
-//      $twitterOAuth->retweet($retweet);
-//    }
+    foreach ($tweets as $tweet) {
+      // create tweet object
+      $tweetObj = new Tweet($tweet);
 
-    $result = $cache->hasItem(763780322756587520);
-    return new JsonResponse(["status" => $result]);
+      // check if the user's limit for today has been reached or not
+      if (!$cache->hasItem($tweetObj->getUser()->getId())) {
+        $retweets[] = $tweetObj->getId();
+        $cache->putItem($tweetObj->getUser()->getId());
+      }
+    }
+
+    // if not then retweet else do nothing
+    foreach ($retweets as $retweet) {
+      $twitterOAuth->retweet($retweet);
+    }
+
+    return new JsonResponse(["Hey!, I am a Tweet Bot!! :)"]);
   }
 }
